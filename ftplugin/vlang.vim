@@ -12,6 +12,9 @@ else
 endif
 
 function! _VFormatFile()
+  if &ft != 'vlang' 
+    return
+  endif
 	if exists('g:v_autofmt_bufwritepre') && g:v_autofmt_bufwritepre || exists('b:v_autofmt_bufwritepre') && b:v_autofmt_bufwritepre
 		let substitution = system("v fmt -", join(getline(1, line('$')), "\n"))
 		if v:shell_error != 0
